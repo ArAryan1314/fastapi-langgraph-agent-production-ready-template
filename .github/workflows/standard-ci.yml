@@ -1,0 +1,41 @@
+name: Standard CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: true
+  SKIP_ENV_VALIDATION: 1
+  NEXT_TELEMETRY_DISABLED: 1
+
+jobs:
+  python-root:
+    name: Python (.)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: .
+    steps:
+      - uses: actions/checkout@v5
+      - name: Use example env
+        run: cp .env.example .env
+      - uses: astral-sh/setup-uv@v6
+      - name: Install
+        run: uv sync --all-extras --all-groups
+      - name: Lint (ruff)
+        run: uvx ruff check .
+      - name: Smoke test (all files compile)
+        run: python -m compileall -q .
+      - name: Dependency audit (report only)
+        continue-on-error: true
+        run: uvx pip-audit

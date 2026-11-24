@@ -1,3 +1,11 @@
+<!-- fork-notice:start -->
+
+> **About this fork:** maintained copy of [wassim249/fastapi-langgraph-agent-production-ready-template](https://github.com/wassim249/fastapi-langgraph-agent-production-ready-template), used for learning and integration. All credit for the original work goes to its authors. License: MIT (see `LICENSE`).
+>
+> [![Standard CI](https://github.com/ArAryan1314/fastapi-langgraph-agent-production-ready-template/actions/workflows/standard-ci.yml/badge.svg)](https://github.com/ArAryan1314/fastapi-langgraph-agent-production-ready-template/actions/workflows/standard-ci.yml)
+
+<!-- fork-notice:end -->
+
 # FastAPI LangGraph Agent Template
 
 A production-ready template for building AI agent backends with FastAPI and LangGraph. Handles the hard parts — stateful conversations, long-term memory, tool calling, observability, rate limiting, auth — so you can focus on your agent logic.
